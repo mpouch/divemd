@@ -1,5 +1,7 @@
 package org.mpouch.ui.frames;
 
+import org.mpouch.ui.panels.TopPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,5 +14,9 @@ public class MainFrame extends JFrame {
         setSize(800, 600);
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Top Panel
+        TopPanel topPanel = new TopPanel();
+        add(topPanel, BorderLayout.NORTH);
     }
 }
