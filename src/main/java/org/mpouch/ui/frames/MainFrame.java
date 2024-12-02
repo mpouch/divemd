@@ -1,5 +1,6 @@
 package org.mpouch.ui.frames;
 
+import org.mpouch.ui.panels.SidePanel;
 import org.mpouch.ui.panels.TopPanel;
 
 import javax.swing.*;
@@ -18,5 +19,9 @@ public class MainFrame extends JFrame {
         // Top Panel
         TopPanel topPanel = new TopPanel();
         add(topPanel, BorderLayout.NORTH);
+
+        // SidePanel
+        SidePanel sidePanel = new SidePanel();
+        add(sidePanel, BorderLayout.WEST);
     }
 }
