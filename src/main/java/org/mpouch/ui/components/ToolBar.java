@@ -22,6 +22,7 @@ public class ToolBar extends JToolBar {
         add(backButton);
         add(forwardButton);
         add(homeButton);
+        add(upButton);
 
         add(newButton);
         add(deleteButton);

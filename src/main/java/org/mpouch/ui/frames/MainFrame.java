@@ -1,5 +1,6 @@
 package org.mpouch.ui.frames;
 
+import org.mpouch.ui.panels.CenterPanel;
 import org.mpouch.ui.panels.SidePanel;
 import org.mpouch.ui.panels.TopPanel;
 
@@ -23,5 +24,9 @@ public class MainFrame extends JFrame {
         // SidePanel
         SidePanel sidePanel = new SidePanel();
         add(sidePanel, BorderLayout.WEST);
+
+        // CenterPanel
+        CenterPanel centerPanel = new CenterPanel();
+        add(centerPanel, BorderLayout.CENTER);
     }
 }
