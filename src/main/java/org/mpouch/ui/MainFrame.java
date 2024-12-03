@@ -1,4 +1,4 @@
-package org.mpouch.ui.frames;
+package org.mpouch.ui;
 
 import org.mpouch.ui.panels.BottomPanel;
 import org.mpouch.ui.panels.CenterPanel;

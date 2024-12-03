@@ -1,6 +1,6 @@
 package org.mpouch.ui.panels;
 
-import org.mpouch.ui.components.MainMenu;
+import org.mpouch.ui.menu.MainMenu;
 import org.mpouch.ui.components.ToolBar;
 
 import javax.swing.*;
