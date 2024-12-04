@@ -1,35 +1,29 @@
 package org.mpouch.ui.components;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ToolBar extends JToolBar {
 
     public ToolBar() {
         setFloatable(false);
+        setBackground(Color.decode("#DEE5F2"));
 
-        JButton backButton = new JButton("Back");
-        JButton forwardButton = new JButton("Forward");
-        JButton homeButton = new JButton("Home");
-        JButton upButton = new JButton("Up");
+        add(createButton("/icons/arrow_left.png"));
+        add(createButton("/icons/arrow_right.png"));
+        add(createButton("/icons/house.png"));
+        add(createButton("/icons/arrow_up.png"));
 
-        JButton newButton = new JButton("New note");
-        JButton deleteButton = new JButton("Delete note");
-        JButton saveButton = new JButton("Save");
+        add(createButton("/icons/add.png"));
+        add(createButton("/icons/delete.png"));
+        add(createButton("/icons/disk.png"));
 
-        JButton searchButton = new JButton("Search");
-        JButton goButton = new JButton("Go");
+        add(createButton("/icons/magnifier.png"));
+        add(createButton("/icons/page_white_go.png"));
 
-        add(backButton);
-        add(forwardButton);
-        add(homeButton);
-        add(upButton);
+    }
 
-        add(newButton);
-        add(deleteButton);
-        add(saveButton);
-
-        add(searchButton);
-        add(goButton);
-
+    private JButton createButton(String path) {
+        return new JButton(new ImageIcon(getClass().getResource(path)));
     }
 }
