@@ -8,7 +8,10 @@ public class ToolsMenu extends JMenu {
         super("Tools");
 
         JMenuItem wordCount = new JMenuItem("Word count");
+        wordCount.setAccelerator(KeyStroke.getKeyStroke("ctrl shift C"));
+
         JMenuItem spellcheck = new JMenuItem("Spellcheck");
+        spellcheck.setAccelerator(KeyStroke.getKeyStroke("ctrl alt X"));
 
         add(wordCount);
         add(spellcheck);

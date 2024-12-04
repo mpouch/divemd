@@ -1,6 +1,7 @@
 package org.mpouch.ui.menu;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
 
 public class HelpMenu extends JMenu {
 
@@ -8,6 +9,8 @@ public class HelpMenu extends JMenu {
         super("Help");
 
         JMenuItem content = new JMenuItem("Content");
+        content.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
+
         JMenuItem keyboardShortcuts = new JMenuItem("Keyboard shortcuts");
         JMenuItem sourceCode = new JMenuItem("Source code");
 
