@@ -9,6 +9,9 @@ public class FileTree extends JTree {
     public FileTree() {
 
         // Placeholder nodes
+        setRootVisible(true);
+        setShowsRootHandles(true);
+        setEditable(true);
 
     }
 }

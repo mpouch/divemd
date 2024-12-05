@@ -7,19 +7,54 @@ public class ToolBar extends JToolBar {
 
     public ToolBar() {
         setFloatable(false);
-        setBackground(Color.decode("#DEE5F2"));
+        // setBackground(Color.decode("#B4CDE6"));
 
         add(createButton("/icons/arrow_left.png"));
         add(createButton("/icons/arrow_right.png"));
         add(createButton("/icons/house.png"));
         add(createButton("/icons/arrow_up.png"));
 
+        addSeparator();
+
         add(createButton("/icons/add.png"));
         add(createButton("/icons/delete.png"));
         add(createButton("/icons/disk.png"));
 
+        addSeparator();
+
         add(createButton("/icons/magnifier.png"));
         add(createButton("/icons/page_white_go.png"));
+        add(createButton("/icons/folder_star.png"));
+
+        addSeparator();
+
+        add(createButton("/icons/link.png"));
+        add(createButton("/icons/text_bold.png"));
+        add(createButton("/icons/text_italic.png"));
+
+        addSeparator();
+
+        add(createButton("/icons/page_white_code.png"));
+        add(createButton("/icons/magnifier_zoom_in.png"));
+        add(createButton("/icons/magnifier_zoom_out.png"));
+
+        addSeparator();
+
+        add(createButton("/icons/folder_go.png"));
+        add(createButton("/icons/page_edit.png"));
+        add(createButton("/icons/page_white_magnify.png"));
+        add(createButton("/icons/page_white_acrobat.png"));
+
+        addSeparator();
+
+        // Search text
+        JTextField searchText = new JTextField();
+        searchText.setPreferredSize(new Dimension(150, 22));
+        searchText.setMaximumSize(new Dimension(150, 22));
+
+        add(searchText);
+
+
 
     }
 

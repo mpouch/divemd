@@ -1,6 +1,7 @@
 package org.mpouch.ui.menu;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainMenu extends JMenuBar {
 

@@ -24,11 +24,15 @@ public class MainFrame extends JFrame {
 
         // Side Panel
         SidePanel sidePanel = new SidePanel();
-        add(sidePanel, BorderLayout.WEST);
+        // add(sidePanel, BorderLayout.WEST);
 
         // Center Panel
         CenterPanel centerPanel = new CenterPanel();
-        add(centerPanel, BorderLayout.CENTER);
+        //add(centerPanel, BorderLayout.CENTER);
+
+        // Body split pane
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidePanel, centerPanel);
+        add(splitPane, BorderLayout.CENTER);
 
         // Bottom Panel
         BottomPanel bottomPanel = new BottomPanel();

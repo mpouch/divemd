@@ -8,8 +8,16 @@ public class BottomPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 
-        JLabel statusLabel = new JLabel("Ready");
+        JLabel backlinks = new JLabel("Backlinks: ");
+        JLabel wordCount = new JLabel("Words: ");
+        JLabel characterCount = new JLabel("Characters: ");
+        JLabel createdDate = new JLabel("Created: ");
+        JLabel modifiedDate = new JLabel("Modified: ");
 
-        add(statusLabel);
+        add(backlinks);
+        add(wordCount);
+        add(characterCount);
+        add(createdDate);
+        add(modifiedDate);
     }
 }

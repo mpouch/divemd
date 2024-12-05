@@ -1,6 +1,8 @@
 package org.mpouch.ui.menu;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class FileMenu extends JMenu {
 
@@ -27,8 +29,15 @@ public class FileMenu extends JMenu {
         JMenuItem settings = new JMenuItem("Settings");
         settings.setAccelerator(KeyStroke.getKeyStroke("ctrl alt S"));
 
+        // Quit app
         JMenuItem quitInstance = new JMenuItem("Quit");
         quitInstance.setAccelerator(KeyStroke.getKeyStroke("ctrl Q"));
+
+        quitInstance.addActionListener((ActionEvent e) -> {
+            Window mainFrame = SwingUtilities.getWindowAncestor(this);
+            mainFrame.dispose();
+            System.exit(0);
+        });
 
         add(newInstance);
         add(openInstance);
