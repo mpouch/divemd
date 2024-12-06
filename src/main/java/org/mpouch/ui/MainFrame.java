@@ -32,6 +32,7 @@ public class MainFrame extends JFrame {
 
         // Body split pane
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidePanel, centerPanel);
+        // splitPane.setBackground(Color.decode("#E0ECF8"));
         add(splitPane, BorderLayout.CENTER);
 
         // Bottom Panel

@@ -1,5 +1,8 @@
 package org.mpouch.ui.components;
 
+import org.mpouch.controllers.SaveController;
+import org.mpouch.ui.factories.ButtonFactory;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,7 +10,7 @@ public class ToolBar extends JToolBar {
 
     public ToolBar() {
         setFloatable(false);
-        // setBackground(Color.decode("#B4CDE6"));
+        // setBackground(Color.decode("#E0ECF8"));
 
         add(createButton("/icons/arrow_left.png"));
         add(createButton("/icons/arrow_right.png"));
@@ -18,7 +21,12 @@ public class ToolBar extends JToolBar {
 
         add(createButton("/icons/add.png"));
         add(createButton("/icons/delete.png"));
-        add(createButton("/icons/disk.png"));
+
+        SaveController saveController = new SaveController();
+
+        JButton saveButton = ButtonFactory.createButton("/icons/disk.png", e-> saveController.save());
+
+        add(saveButton);
 
         addSeparator();
 

@@ -1,6 +1,7 @@
 package org.mpouch.ui.config;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.IconUIResource;
 
 public class UIManagerConfig {
@@ -21,5 +22,7 @@ public class UIManagerConfig {
         UIManager.put("Tree.openIcon", new IconUIResource(openIcon));
         UIManager.put("Tree.closedIcon", new IconUIResource(closedIcon));
         UIManager.put("Tree.leafIcon", new IconUIResource(leafIcon));
+
+        // Tabs
     }
 }

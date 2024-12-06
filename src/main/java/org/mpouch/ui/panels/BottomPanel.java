@@ -1,12 +1,14 @@
 package org.mpouch.ui.panels;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class BottomPanel extends JPanel {
 
     public BottomPanel() {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        // setBackground(Color.decode("#E0ECF8"));
 
         JLabel backlinks = new JLabel("Backlinks: ");
         JLabel wordCount = new JLabel("Words: ");
