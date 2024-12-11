@@ -8,9 +8,12 @@ import java.awt.*;
 public class SidePanel extends JPanel {
 
     public SidePanel() {
+        createSidePanel();
+    }
+
+    private void createSidePanel() {
         setLayout(new BorderLayout());
         add(new FileTree(), BorderLayout.CENTER);
-
         setPreferredSize(new Dimension(200, getHeight()));
     }
 }

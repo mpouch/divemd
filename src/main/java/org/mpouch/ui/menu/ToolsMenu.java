@@ -6,7 +6,9 @@ public class ToolsMenu extends JMenu {
 
     public ToolsMenu() {
         super("Tools");
+    }
 
+    private void createToolsMenu() {
         JMenuItem wordCount = new JMenuItem("Word count");
         wordCount.setAccelerator(KeyStroke.getKeyStroke("ctrl shift C"));
 

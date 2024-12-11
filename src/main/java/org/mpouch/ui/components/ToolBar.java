@@ -1,6 +1,5 @@
 package org.mpouch.ui.components;
 
-import org.mpouch.controllers.SaveController;
 import org.mpouch.ui.factories.ButtonFactory;
 
 import javax.swing.*;
@@ -11,7 +10,11 @@ public class ToolBar extends JToolBar {
     public ToolBar() {
         setFloatable(false);
         // setBackground(Color.decode("#E0ECF8"));
+        configureButtons();
+        configureSearchField();
+    }
 
+    private void configureButtons() {
         add(createButton("/icons/arrow_left.png"));
         add(createButton("/icons/arrow_right.png"));
         add(createButton("/icons/house.png"));
@@ -22,9 +25,7 @@ public class ToolBar extends JToolBar {
         add(createButton("/icons/add.png"));
         add(createButton("/icons/delete.png"));
 
-        SaveController saveController = new SaveController();
-
-        JButton saveButton = ButtonFactory.createButton("/icons/disk.png", e-> saveController.save());
+        JButton saveButton = ButtonFactory.createButton("/icons/disk.png", e-> System.out.println("Hello..."));
 
         add(saveButton);
 
@@ -54,16 +55,14 @@ public class ToolBar extends JToolBar {
         add(createButton("/icons/page_white_acrobat.png"));
 
         addSeparator();
+    }
 
-        // Search text
+    public void configureSearchField() {
         JTextField searchText = new JTextField();
         searchText.setPreferredSize(new Dimension(150, 22));
         searchText.setMaximumSize(new Dimension(150, 22));
 
         add(searchText);
-
-
-
     }
 
     private JButton createButton(String path) {

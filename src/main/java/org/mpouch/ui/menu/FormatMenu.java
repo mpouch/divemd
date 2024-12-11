@@ -6,7 +6,10 @@ public class FormatMenu extends JMenu {
 
     public FormatMenu() {
         super("Format");
+        createFormatMenu();
+    }
 
+    private void createFormatMenu() {
         JMenuItem link = new JMenuItem("Link");
         link.setAccelerator(KeyStroke.getKeyStroke("ctrl K"));
 

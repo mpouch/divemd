@@ -7,7 +7,6 @@ import javax.swing.tree.DefaultTreeModel;
 public class FileTree extends JTree {
 
     public FileTree() {
-
         // Placeholder nodes
         setRootVisible(true);
         setShowsRootHandles(true);

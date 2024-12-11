@@ -6,7 +6,10 @@ public class EditMenu extends JMenu {
 
     public EditMenu() {
         super("Edit");
+        createEditMenu();
+    }
 
+    private void createEditMenu() {
         JMenuItem undo = new JMenuItem("Undo");
         undo.setAccelerator(KeyStroke.getKeyStroke("ctrl Z"));
 

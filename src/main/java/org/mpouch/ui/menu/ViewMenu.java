@@ -7,7 +7,10 @@ public class ViewMenu extends JMenu {
 
     public ViewMenu() {
         super("View");
+        createViewMenu();
+    }
 
+    private void createViewMenu() {
         JMenuItem switchPreview = new JMenuItem("Switch preview");
         switchPreview.setAccelerator(KeyStroke.getKeyStroke("ctrl E"));
 

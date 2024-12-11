@@ -8,7 +8,10 @@ public class FileMenu extends JMenu {
 
     public FileMenu() {
         super("File");
+        createFileMenu();
+    }
 
+    private void createFileMenu() {
         JMenuItem newInstance = new JMenuItem("New instance");
 
         JMenuItem openInstance = new JMenuItem("Open instance");

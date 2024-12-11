@@ -7,7 +7,10 @@ public class HelpMenu extends JMenu {
 
     public HelpMenu() {
         super("Help");
+        createHelpMenu();
+    }
 
+    private void createHelpMenu() {
         JMenuItem content = new JMenuItem("Content");
         content.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 

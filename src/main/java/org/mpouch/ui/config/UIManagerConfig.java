@@ -1,7 +1,6 @@
 package org.mpouch.ui.config;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.IconUIResource;
 
 public class UIManagerConfig {

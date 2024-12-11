@@ -6,6 +6,10 @@ import java.awt.*;
 public class BottomPanel extends JPanel {
 
     public BottomPanel() {
+        createBottomPanel();
+    }
+
+    private void createBottomPanel() {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
         // setBackground(Color.decode("#E0ECF8"));

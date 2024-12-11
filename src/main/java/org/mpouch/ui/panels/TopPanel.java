@@ -9,8 +9,11 @@ import java.awt.*;
 public class TopPanel extends JPanel {
 
     public TopPanel() {
-        setLayout(new BorderLayout());
+        createTopPanel();
+    }
 
+    private void createTopPanel() {
+        setLayout(new BorderLayout());
         add(new MainMenu(), BorderLayout.NORTH);
         add(new ToolBar(), BorderLayout.SOUTH);
     }
