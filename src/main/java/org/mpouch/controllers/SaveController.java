@@ -18,7 +18,7 @@ public class SaveController {
     public void saveNote() {
         String content = centerPanel.getTextArea().getText();
 
-        String workDir = "/home/pouch/Documentos/swingtest";
+        String workDir = "";
         File directory = new File(workDir);
 
         if (!directory.exists()) {

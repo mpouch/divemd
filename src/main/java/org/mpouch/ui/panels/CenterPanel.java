@@ -15,8 +15,8 @@ public class CenterPanel extends JPanel {
 
     private void createTabbedPane() {
         textArea = new JTextArea();
-        textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        textArea.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et rhoncus nibh, sed vehicula ex. Duis cursus convallis mauris, at porttitor lacus malesuada at.");
+        textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+        textArea.setText("");
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
 
@@ -28,5 +28,9 @@ public class CenterPanel extends JPanel {
 
     public JTextArea getTextArea() {
         return textArea;
+    }
+
+    public void setTextArea(String content) {
+        textArea.setText(content);
     }
 }

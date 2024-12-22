@@ -26,7 +26,17 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
             Object nodeUserObject = node.getUserObject();
 
             if (nodeUserObject instanceof File file) {
-                String newName = ((String) super.getCellEditorValue()).trim();
+
+                String newName;
+
+                // If file is markdown, append ".md" at the end
+                if (file.getName().endsWith(".md")) {
+                    newName = ((String) super.getCellEditorValue()).trim() + ".md";
+                } else {
+                    newName = ((String) super.getCellEditorValue()).trim();
+                }
+
+                // If file is directory, just trim
 
                 File renamedFile = new File(file.getParentFile(), newName);
                 if (file.renameTo(renamedFile)) {
@@ -54,7 +64,8 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
             if (editorComponent instanceof DefaultTreeCellEditor.EditorContainer container) {
                 Component nameEditor = container.getComponent(0);
                 if (nameEditor instanceof JTextField textField) {
-                    textField.setText(file.getName());
+                    String noteName = file.getName().substring(0, file.getName().length() -3);
+                    textField.setText(noteName);
 
                     if (file.isDirectory()) {
                         editingIcon = directoryIcon;
