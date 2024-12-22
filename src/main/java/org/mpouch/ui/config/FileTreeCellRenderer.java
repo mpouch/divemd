@@ -27,10 +27,17 @@ public class FileTreeCellRenderer extends DefaultTreeCellRenderer {
         Object nodeUserObject = node.getUserObject();
 
         if (nodeUserObject instanceof File file) {
-            setText(file.getName());
             if (file.isDirectory()) {
+                setText(file.getName());
                 setIcon(directoryIcon);
-            } else {
+            } else if (file.getName().endsWith(".md")) {
+                // File name without markdown extension
+                int fileNameLength = file.getName().length() - 3;
+                String markdownFileName = file.getName().substring(0, fileNameLength);
+
+                setText(markdownFileName);
+
+                setText(file.getName().substring(0, (file.getName().length() - 3)));
                 setIcon(fileIcon);
             }
         }

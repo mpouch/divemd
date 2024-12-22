@@ -17,7 +17,7 @@ public class FileTree extends JTree {
         setCellEditor(editor);
 
         FileTreeController fileTreeController = new FileTreeController();
-        String path = "";
+        String path = "/home/pouch/Documentos/swingtest";
 
         DefaultTreeModel model = fileTreeController.getTreeModel(path);
         setModel(model);

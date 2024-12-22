@@ -24,7 +24,9 @@ public class FileTreeService {
 
             if (children != null) {
                 for (File child : children) {
-                    node.add(createNode(child));
+                    if (child.isDirectory() || child.getName().endsWith(".md")) {
+                        node.add(createNode(child));
+                    }
                 }
             }
         }

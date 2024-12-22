@@ -26,7 +26,7 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
             Object nodeUserObject = node.getUserObject();
 
             if (nodeUserObject instanceof File file) {
-                String newName = (String) super.getCellEditorValue();
+                String newName = ((String) super.getCellEditorValue()).trim();
 
                 File renamedFile = new File(file.getParentFile(), newName);
                 if (file.renameTo(renamedFile)) {
