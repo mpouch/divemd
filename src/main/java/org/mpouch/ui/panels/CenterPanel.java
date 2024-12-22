@@ -24,8 +24,6 @@ public class CenterPanel extends JPanel {
         JScrollPane scrollPane = new JScrollPane(textArea);
         tabbedPane.add("Note", scrollPane);
         add(tabbedPane, BorderLayout.CENTER);
-
-
     }
 
     public JTextArea getTextArea() {

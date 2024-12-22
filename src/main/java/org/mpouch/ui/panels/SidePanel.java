@@ -13,7 +13,11 @@ public class SidePanel extends JPanel {
 
     private void createSidePanel() {
         setLayout(new BorderLayout());
-        add(new FileTree(), BorderLayout.CENTER);
-        setPreferredSize(new Dimension(200, getHeight()));
+
+        FileTree fileTree = new FileTree();
+        JScrollPane jScrollPane = new JScrollPane(fileTree);
+        add(jScrollPane, BorderLayout.CENTER);
+
+        setPreferredSize(new Dimension(200, Short.MAX_VALUE));
     }
 }

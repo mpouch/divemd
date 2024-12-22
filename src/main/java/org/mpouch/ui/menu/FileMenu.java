@@ -1,5 +1,9 @@
 package org.mpouch.ui.menu;
 
+import org.mpouch.controllers.SaveController;
+import org.mpouch.ui.MainFrame;
+import org.mpouch.ui.panels.CenterPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,8 +23,15 @@ public class FileMenu extends JMenu {
 
         JMenu recentInstances = new JMenu("Recent");
 
+        // Save
         JMenuItem saveChanges = new JMenuItem("Save changes");
         saveChanges.setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
+
+        saveChanges.addActionListener((ActionEvent e) -> {
+            CenterPanel centerPanel = ((MainFrame) SwingUtilities.getWindowAncestor(this)).getCenterPanel();
+            SaveController saveController = new SaveController(centerPanel);
+            saveController.saveNote();
+        });
 
         JMenuItem exportAsPDF = new JMenuItem("Export as PDF");
 

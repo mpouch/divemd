@@ -18,9 +18,9 @@ public class UIManagerConfig {
 
         UIManager.put("Tree.collapsedIcon", new IconUIResource(collapsedIcon));
         UIManager.put("Tree.expandedIcon", new IconUIResource(expandedIcon));
-        UIManager.put("Tree.openIcon", new IconUIResource(openIcon));
-        UIManager.put("Tree.closedIcon", new IconUIResource(closedIcon));
-        UIManager.put("Tree.leafIcon", new IconUIResource(leafIcon));
+        //UIManager.put("Tree.openIcon", new IconUIResource(openIcon));
+        //UIManager.put("Tree.closedIcon", new IconUIResource(closedIcon));
+        //UIManager.put("Tree.leafIcon", new IconUIResource(closedIcon));
 
         // Tabs
     }

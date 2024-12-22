@@ -6,6 +6,7 @@ public class ToolsMenu extends JMenu {
 
     public ToolsMenu() {
         super("Tools");
+        createToolsMenu();
     }
 
     private void createToolsMenu() {

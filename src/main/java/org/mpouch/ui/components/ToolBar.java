@@ -1,6 +1,9 @@
 package org.mpouch.ui.components;
 
+import org.mpouch.controllers.SaveController;
+import org.mpouch.ui.MainFrame;
 import org.mpouch.ui.factories.ButtonFactory;
+import org.mpouch.ui.panels.CenterPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +28,11 @@ public class ToolBar extends JToolBar {
         add(createButton("/icons/add.png"));
         add(createButton("/icons/delete.png"));
 
-        JButton saveButton = ButtonFactory.createButton("/icons/disk.png", e-> System.out.println("Hello..."));
+        JButton saveButton = ButtonFactory.createButton("/icons/disk.png", e-> {
+            CenterPanel centerPanel = ((MainFrame) SwingUtilities.getWindowAncestor(this)).getCenterPanel();
+            SaveController saveController = new SaveController(centerPanel);
+            saveController.saveNote();
+        });
 
         add(saveButton);
 
