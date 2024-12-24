@@ -28,10 +28,15 @@ public class ToolBar extends JToolBar {
         add(createButton("/icons/add.png"));
         add(createButton("/icons/delete.png"));
 
-        JButton saveButton = ButtonFactory.createButton("/icons/disk.png", e-> {
+        /* JButton saveButton = ButtonFactory.createButton("/icons/disk.png", e-> {
             CenterPanel centerPanel = ((MainFrame) SwingUtilities.getWindowAncestor(this)).getCenterPanel();
             SaveController saveController = new SaveController(centerPanel);
             saveController.saveNote();
+        });
+         */
+
+        JButton saveButton = ButtonFactory.createButton("/icons/disk.png", e-> {
+            System.out.println("Placeholder");
         });
 
         add(saveButton);

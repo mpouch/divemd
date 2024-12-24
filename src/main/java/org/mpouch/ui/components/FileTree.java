@@ -1,8 +1,10 @@
 package org.mpouch.ui.components;
 
 import org.mpouch.controllers.FileTreeController;
+import org.mpouch.services.utils.FileUtils;
 import org.mpouch.ui.config.FileTreeCellEditor;
 import org.mpouch.ui.config.FileTreeCellRenderer;
+import org.mpouch.ui.panels.CenterPanel;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -17,6 +19,10 @@ import java.nio.file.Files;
 public class FileTree extends JTree {
 
     public FileTree() {
+        createFileTree();
+    }
+
+    private void createFileTree() {
         FileTreeCellRenderer renderer = new FileTreeCellRenderer();
         FileTreeCellEditor editor = new FileTreeCellEditor(this, renderer);
 
@@ -34,7 +40,6 @@ public class FileTree extends JTree {
         setEditable(true);
 
         addTreeSelectionListener(new FileTreeSelectionListener());
-
     }
 
     private class FileTreeSelectionListener implements TreeSelectionListener {
@@ -48,8 +53,10 @@ public class FileTree extends JTree {
                 File file = (File) nodeUserObject;
                 if (file.isFile() && file.getName().endsWith(".md")) {
                     try {
+                        CenterPanel centerPanel = CenterPanel.getInstance();
                         String content = new String(Files.readAllBytes(file.toPath()));
-                        System.out.println(content);
+                        centerPanel.openNote(FileUtils.getCleanFileName(file), content);
+                        // System.out.println(content);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

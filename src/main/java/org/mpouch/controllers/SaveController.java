@@ -16,7 +16,7 @@ public class SaveController {
     }
 
     public void saveNote() {
-        String content = centerPanel.getTextArea().getText();
+        String content = "centerPanel.getTextArea().getText();";
 
         String workDir = "";
         File directory = new File(workDir);

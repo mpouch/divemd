@@ -10,8 +10,6 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
 
-    final CenterPanel centerPanel;
-
     public MainFrame() {
         // Config
         setTitle("divemd");
@@ -23,13 +21,13 @@ public class MainFrame extends JFrame {
         TopPanel topPanel = new TopPanel();
         add(topPanel, BorderLayout.NORTH);
 
+        // Center Panel
+        CenterPanel centerPanel = CenterPanel.getInstance();
+        //add(centerPanel, BorderLayout.CENTER);
+
         // Side Panel
         SidePanel sidePanel = new SidePanel();
         // add(sidePanel, BorderLayout.WEST);
-
-        // Center Panel
-        centerPanel = new CenterPanel();
-        //add(centerPanel, BorderLayout.CENTER);
 
         // Body split pane
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidePanel, centerPanel);
@@ -39,9 +37,5 @@ public class MainFrame extends JFrame {
         // Bottom Panel
         BottomPanel bottomPanel = new BottomPanel();
         add(bottomPanel, BorderLayout.SOUTH);
-    }
-
-    public CenterPanel getCenterPanel() {
-        return centerPanel;
     }
 }

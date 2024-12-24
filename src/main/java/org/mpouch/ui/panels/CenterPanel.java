@@ -1,36 +1,45 @@
 package org.mpouch.ui.panels;
 
+import org.mpouch.ui.components.NoteEditor;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class CenterPanel extends JPanel {
-
-    private JTextArea textArea;
-    final JFileChooser fileChooser = new JFileChooser();
+    private static CenterPanel instance;
+    private final JTabbedPane tabbedPane;
 
     public CenterPanel() {
         setLayout(new BorderLayout());
-        createTabbedPane();
-    }
-
-    private void createTabbedPane() {
-        textArea = new JTextArea();
-        textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-        textArea.setText("");
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-
-        JTabbedPane tabbedPane = new JTabbedPane();
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        tabbedPane.add("Note", scrollPane);
+        tabbedPane = new JTabbedPane();
         add(tabbedPane, BorderLayout.CENTER);
+
+        // Testing
+        addNoteTab("Welcome", "# Welcome\n\nNote content A");
+        addNoteTab("Format", "Note content B");
     }
 
-    public JTextArea getTextArea() {
-        return textArea;
+    public static CenterPanel getInstance() {
+        if (instance == null) {
+            instance = new CenterPanel();
+        }
+        return instance;
     }
 
-    public void setTextArea(String content) {
-        textArea.setText(content);
+    public void addNoteTab(String title, String content) {
+        NoteEditor noteEditor = new NoteEditor();
+        noteEditor.setContent(content);
+        tabbedPane.addTab(title, noteEditor);
+    }
+
+    public void openNote(String title, String content) {
+        Component selectedComponent = tabbedPane.getSelectedComponent();
+
+        if (selectedComponent instanceof NoteEditor selectedNoteEditor) {
+            selectedNoteEditor.setContent(content);
+
+            int selectedIndex = tabbedPane.getSelectedIndex();
+            tabbedPane.setTitleAt(selectedIndex, title);
+        }
     }
 }

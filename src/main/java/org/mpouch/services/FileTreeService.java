@@ -9,13 +9,13 @@ public class FileTreeService {
         File rootFile = new File(path);
 
         if (!rootFile.exists() || !rootFile.isDirectory()) {
-            throw new IllegalArgumentException("Invalid directory");
+            throw new IllegalArgumentException("Invalid directory: " + path);
         }
 
         return createNode(rootFile);
     }
 
-    public DefaultMutableTreeNode createNode(File file) {
+    private DefaultMutableTreeNode createNode(File file) {
         DefaultMutableTreeNode node = new DefaultMutableTreeNode(file);
         node.setUserObject(file);
 

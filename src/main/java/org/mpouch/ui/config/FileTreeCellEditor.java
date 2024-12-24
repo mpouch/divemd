@@ -1,5 +1,7 @@
 package org.mpouch.ui.config;
 
+import org.mpouch.services.utils.FileUtils;
+
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellEditor;
@@ -36,8 +38,6 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
                     newName = ((String) super.getCellEditorValue()).trim();
                 }
 
-                // If file is directory, just trim
-
                 File renamedFile = new File(file.getParentFile(), newName);
                 if (file.renameTo(renamedFile)) {
                     return renamedFile;
@@ -64,8 +64,7 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
             if (editorComponent instanceof DefaultTreeCellEditor.EditorContainer container) {
                 Component nameEditor = container.getComponent(0);
                 if (nameEditor instanceof JTextField textField) {
-                    String noteName = file.getName().substring(0, file.getName().length() -3);
-                    textField.setText(noteName);
+                    textField.setText(FileUtils.getCleanFileName(file));
 
                     if (file.isDirectory()) {
                         editingIcon = directoryIcon;
