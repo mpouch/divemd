@@ -13,10 +13,6 @@ public class CenterPanel extends JPanel {
         setLayout(new BorderLayout());
         tabbedPane = new JTabbedPane();
         add(tabbedPane, BorderLayout.CENTER);
-
-        // Testing
-        addNoteTab("Welcome", "# Welcome\n\nNote content A");
-        addNoteTab("Format", "Note content B");
     }
 
     public static CenterPanel getInstance() {
@@ -26,13 +22,21 @@ public class CenterPanel extends JPanel {
         return instance;
     }
 
-    public void addNoteTab(String title, String content) {
+    public void openNote(String title, String content) {
+        if (tabbedPane.getTabCount() == 0) {
+            openNoteInNewTab(title, content);
+        } else {
+            openNoteInSelectedTab(title, content);
+        }
+    }
+
+    public void openNoteInNewTab(String title, String content) {
         NoteEditor noteEditor = new NoteEditor();
         noteEditor.setContent(content);
         tabbedPane.addTab(title, noteEditor);
     }
 
-    public void openNote(String title, String content) {
+    public void openNoteInSelectedTab(String title, String content) {
         Component selectedComponent = tabbedPane.getSelectedComponent();
 
         if (selectedComponent instanceof NoteEditor selectedNoteEditor) {

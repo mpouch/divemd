@@ -1,6 +1,7 @@
 package org.mpouch.controllers;
 
 import org.mpouch.services.SaveService;
+import org.mpouch.ui.config.AppVariables;
 import org.mpouch.ui.panels.CenterPanel;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class SaveController {
     public void saveNote() {
         String content = "centerPanel.getTextArea().getText();";
 
-        String workDir = "";
+        String workDir = AppVariables.getWorkdir();
         File directory = new File(workDir);
 
         if (!directory.exists()) {
