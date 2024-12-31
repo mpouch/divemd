@@ -1,7 +1,7 @@
 package org.mpouch.controllers;
 
 import org.mpouch.services.SaveService;
-import org.mpouch.ui.config.AppVariables;
+import org.mpouch.ui.config.AppConfig;
 import org.mpouch.ui.panels.CenterPanel;
 
 import javax.swing.*;
@@ -12,24 +12,16 @@ public class SaveController {
     private final SaveService saveService = new SaveService();
     private final CenterPanel centerPanel;
 
-    public SaveController(CenterPanel centerPanel) {
-        this.centerPanel = centerPanel;
+    public SaveController() {
+        this.centerPanel = CenterPanel.getInstance();
     }
 
     public void saveNote() {
-        String content = "centerPanel.getTextArea().getText();";
-
-        String workDir = AppVariables.getWorkdir();
-        File directory = new File(workDir);
-
-        if (!directory.exists()) {
-            directory.mkdirs();
-        }
-
-        File fileToSave = new File(directory, "note.md");
+        File currentFile = centerPanel.getNoteEditor().getEditingFile();
+        String content = centerPanel.getNoteContent();
 
         try {
-            saveService.saveToFile(content, fileToSave);
+            saveService.saveToFile(content, currentFile);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error");
         }

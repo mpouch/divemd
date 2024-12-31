@@ -2,7 +2,7 @@ package org.mpouch.ui.components;
 
 import org.mpouch.controllers.FileTreeController;
 import org.mpouch.services.utils.FileUtils;
-import org.mpouch.ui.config.AppVariables;
+import org.mpouch.ui.config.AppConfig;
 import org.mpouch.ui.config.FileTreeCellEditor;
 import org.mpouch.ui.config.FileTreeCellRenderer;
 import org.mpouch.ui.panels.CenterPanel;
@@ -31,7 +31,7 @@ public class FileTree extends JTree {
         setCellEditor(editor);
 
         FileTreeController fileTreeController = new FileTreeController();
-        String path = AppVariables.getWorkdir();
+        String path = AppConfig.getWorkdir();
 
         DefaultTreeModel model = fileTreeController.getTreeModel(path);
         setModel(model);
@@ -43,22 +43,20 @@ public class FileTree extends JTree {
         addTreeSelectionListener(new FileTreeSelectionListener());
     }
 
-    private class FileTreeSelectionListener implements TreeSelectionListener {
+    private static class FileTreeSelectionListener implements TreeSelectionListener {
         @Override
         public void valueChanged(TreeSelectionEvent e) {
             TreePath path = e.getPath();
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) path.getLastPathComponent();
             Object nodeUserObject = selectedNode.getUserObject();
 
-            if (nodeUserObject instanceof File file) {
-                if (file.isFile() && file.getName().endsWith(".md")) {
-                    try {
-                        CenterPanel centerPanel = CenterPanel.getInstance();
-                        String content = new String(Files.readAllBytes(file.toPath()));
-                        centerPanel.openNote(FileUtils.getCleanFileName(file), content);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
+            if (nodeUserObject instanceof File file && file.getName().endsWith(".md")) {
+                try {
+                    CenterPanel centerPanel = CenterPanel.getInstance();
+                    String content = new String(Files.readAllBytes(file.toPath()));
+                    centerPanel.openNote(file, FileUtils.getCleanFileName(file), content);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         }

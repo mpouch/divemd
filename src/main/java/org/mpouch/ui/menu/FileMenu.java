@@ -27,16 +27,9 @@ public class FileMenu extends JMenu {
         JMenuItem saveChanges = new JMenuItem("Save changes");
         saveChanges.setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
 
-        /*
         saveChanges.addActionListener((ActionEvent e) -> {
-            CenterPanel centerPanel = ((MainFrame) SwingUtilities.getWindowAncestor(this)).getCenterPanel();
-            SaveController saveController = new SaveController(centerPanel);
+            SaveController saveController = new SaveController();
             saveController.saveNote();
-        });
-         */
-
-        saveChanges.addActionListener((ActionEvent e) -> {
-            System.out.println("Placeholder");
         });
 
         JMenuItem exportAsPDF = new JMenuItem("Export as PDF");
