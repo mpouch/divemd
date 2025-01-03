@@ -23,6 +23,7 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
     // Custom config
 
     // Rename file
+    // TODO: Handle IO exceptions and permissions
     @Override
     public Object getCellEditorValue() {
         TreePath editingPath = tree.getEditingPath();
@@ -32,28 +33,32 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
 
             if (nodeUserObject instanceof File file) {
 
-                String newName;
+                // Remove whitespace
+                String newName = ((String) super.getCellEditorValue()).trim();
 
-                // If file is markdown, append ".md" at the end
+                // If the file is a markdown file, append ".md" to the file name
                 if (file.getName().endsWith(".md")) {
-                    newName = ((String) super.getCellEditorValue()).trim() + ".md";
-                } else {
-                    newName = ((String) super.getCellEditorValue()).trim();
+                    newName += ".md";
                 }
 
                 File renamedFile = new File(file.getParentFile(), newName);
-                if (file.renameTo(renamedFile)) {
+                file.renameTo(renamedFile);
+
+                // If the file is a markdown file, trigger an update in the NoteEditor
+                // to reflect the new note name in the tabbed pane
+                if (file.getName().endsWith(".md")) {
                     requestNoteEditorUpdate(file, renamedFile);
-                    return renamedFile;
-                } else {
-                    return file;
                 }
+
+                return renamedFile;
             }
         }
 
         return super.getCellEditorValue();
     }
 
+    // Configures the editing cell by setting the appropiate icon
+    // and displaying the clean name of the file or directory
     @Override
     public Component getTreeCellEditorComponent(
             JTree tree, Object value, boolean isSelected,
@@ -82,12 +87,12 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
         return editorComponent;
     }
 
-    public static void requestNoteEditorUpdate(File file, File renamedFile) {
+    private static void requestNoteEditorUpdate(File file, File renamedFile) {
         CenterPanel centerPanel = CenterPanel.getInstance();
         String oldCleanName = FileUtils.getCleanFileName(file);
         String newCleanName = FileUtils.getCleanFileName(renamedFile);
 
-        int tabIndex = centerPanel.testGetTabIndex(oldCleanName);
+        int tabIndex = centerPanel.getTabIndex(oldCleanName);
         centerPanel.updateNoteEditor(tabIndex, newCleanName);
         centerPanel.getNoteEditor().setEditingFile(renamedFile);
     }

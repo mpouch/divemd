@@ -51,7 +51,7 @@ public class CenterPanel extends JPanel {
         }
     }
 
-    // Get note title and content
+    // Get note title and content - DEPRECATED
 
     public String getNoteTitle() {
         int selectedIndex = tabbedPane.getSelectedIndex();
@@ -81,7 +81,7 @@ public class CenterPanel extends JPanel {
         return null;
     }
 
-    public int testGetTabIndex(String title) {
+    public int getTabIndex(String title) {
         return tabbedPane.indexOfTab(title);
     }
 

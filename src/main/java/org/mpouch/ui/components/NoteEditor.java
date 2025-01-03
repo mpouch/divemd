@@ -1,16 +1,21 @@
 package org.mpouch.ui.components;
 
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
 public class NoteEditor extends JPanel {
-    private final JTextArea textArea;
+    private final RSyntaxTextArea textArea;
     private File editingFile;
 
     public NoteEditor(File file) {
         setLayout(new BorderLayout());
-        textArea = new JTextArea();
+        textArea = new RSyntaxTextArea();
+        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_MARKDOWN);
+        textArea.setHighlightCurrentLine(false);
         textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);

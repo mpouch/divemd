@@ -1,7 +1,6 @@
 package org.mpouch.controllers;
 
 import org.mpouch.services.SaveService;
-import org.mpouch.ui.config.AppConfig;
 import org.mpouch.ui.panels.CenterPanel;
 
 import javax.swing.*;
