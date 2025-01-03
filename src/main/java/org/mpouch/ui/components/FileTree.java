@@ -36,7 +36,7 @@ public class FileTree extends JTree {
         DefaultTreeModel model = fileTreeController.getTreeModel(path);
         setModel(model);
 
-        setRootVisible(true);
+        setRootVisible(false);
         setShowsRootHandles(true);
         setEditable(true);
 
