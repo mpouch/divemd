@@ -16,13 +16,17 @@ public class SaveController {
     }
 
     public void saveNote() {
-        File currentFile = centerPanel.getNoteEditor().getEditingFile();
-        String content = centerPanel.getNoteContent();
-
-        try {
-            saveService.saveToFile(content, currentFile);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error");
-        }
+    	if (centerPanel.getNoteEditor() != null) {
+            File currentFile = centerPanel.getNoteEditor().getEditingFile();
+            String content = centerPanel.getNoteContent();
+            
+            try {
+                saveService.saveToFile(content, currentFile);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Error saving note");
+            }            
+    	} else {
+    		System.out.println("Warning: No note is currently open. Open a note before saving");
+    	}
     }
 }
