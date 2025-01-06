@@ -35,7 +35,7 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
 
                 // Remove whitespace
                 String newName = ((String) super.getCellEditorValue()).trim();
-
+                
                 // If the file is a markdown file, append ".md" to the file name
                 if (file.getName().endsWith(".md")) {
                     newName += ".md";

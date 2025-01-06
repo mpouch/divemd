@@ -18,47 +18,129 @@ public class ToolBar extends JToolBar {
     }
 
     private void configureButtons() {
-        add(createButton("/icons/arrow_left.png"));
-        add(createButton("/icons/arrow_right.png"));
-        add(createButton("/icons/house.png"));
-        add(createButton("/icons/arrow_up.png"));
+    	/* Navegation */
+    	
+        JButton backButton = ButtonFactory.createButton("/icons/arrow_left.png", e -> {
+        	System.out.println("Action: Go back");
+        });
+        add(backButton);
+        
+        JButton forwardButton = ButtonFactory.createButton("/icons/arrow_right.png", e -> {
+        	System.out.println("Action: Go forward");
+        });
+        add(forwardButton);
+        
+        JButton homeButton = ButtonFactory.createButton("/icons/house.png", e -> {
+        	System.out.println("Action: Go to Home");
+        });
+        add(homeButton);
+        
+        JButton upButton = ButtonFactory.createButton("/icons/arrow_up.png", e -> {
+        	System.out.println("Action: Go up");
+        });
+        add(upButton);
 
         addSeparator();
-
-        add(createButton("/icons/add.png"));
-        add(createButton("/icons/delete.png"));
-
+        
+        /* Create, delete and save notes */
+        
+        JButton createButton = ButtonFactory.createButton("/icons/add.png", e -> {
+        	System.out.println("Action: Create note");
+        });
+        add(createButton);
+        
+        JButton deleteButton = ButtonFactory.createButton("/icons/delete.png", e -> {
+        	System.out.println("Action: Delete note");
+        });
+        add(deleteButton);
+        
         JButton saveButton = ButtonFactory.createButton("/icons/disk.png", e-> {
+        	System.out.println("Action: Save note");
             SaveController saveController = new SaveController();
             saveController.saveNote();
         });
-
         add(saveButton);
 
         addSeparator();
-
-        add(createButton("/icons/magnifier.png"));
-        add(createButton("/icons/page_white_go.png"));
-        add(createButton("/icons/folder_star.png"));
+        
+        /* Search, go and bookmark */
+        
+        JButton globalSearchButton = ButtonFactory.createButton("/icons/magnifier.png", e -> {
+        	System.out.println("Action: Global search");
+        });
+        add(globalSearchButton);
+        
+        JButton openNoteButton = ButtonFactory.createButton("/icons/page_white_go.png", e -> {
+        	System.out.println("Action: Open note/Quick switcher");
+        });
+        add(openNoteButton);
+        
+        JButton bookmarkNoteButton = ButtonFactory.createButton("/icons/folder_star.png", e -> {
+        	System.out.println("Action: Bookmark note");
+        });
+        add(bookmarkNoteButton);
 
         addSeparator();
-
-        add(createButton("/icons/link.png"));
-        add(createButton("/icons/text_bold.png"));
-        add(createButton("/icons/text_italic.png"));
+        
+        /* Editor actions */
+        
+        JButton linkNote = ButtonFactory.createButton("/icons/link.png", e -> {
+        	System.out.println("Action: Link note");
+        });
+        add(linkNote);
+        
+        JButton boldTextButton = ButtonFactory.createButton("/icons/text_bold.png", e -> {
+        	System.out.println("Action: Bold text");
+        });
+        add(boldTextButton);
+        
+        JButton italicTextButton = ButtonFactory.createButton("/icons/text_italic.png", e -> {
+        	System.out.println("Action: Italic text");
+        });
+        add(italicTextButton);
 
         addSeparator();
-
-        add(createButton("/icons/page_white_code.png"));
-        add(createButton("/icons/magnifier_zoom_in.png"));
-        add(createButton("/icons/magnifier_zoom_out.png"));
+        
+        /* Editor controls */
+        
+        JButton switchEditorView = ButtonFactory.createButton("/icons/page_white_code.png", e -> {
+        	System.out.println("Action: Switch editor view");
+        });
+        add(switchEditorView);
+        
+        JButton zoomInButton = ButtonFactory.createButton("/icons/magnifier_zoom_in.png", e -> {
+        	System.out.println("Action: Zoom in");
+        });
+        add(zoomInButton);
+        
+        JButton zoomOutButton = ButtonFactory.createButton("/icons/magnifier_zoom_out.png", e -> {
+        	System.out.println("Action: Zoom out");
+        });
+        add(zoomOutButton);
 
         addSeparator();
-
-        add(createButton("/icons/folder_go.png"));
-        add(createButton("/icons/page_edit.png"));
-        add(createButton("/icons/page_white_magnify.png"));
-        add(createButton("/icons/page_white_acrobat.png"));
+        
+        /* Move note, rename note, search in note, export to PDF */
+        
+        JButton moveNoteButton = ButtonFactory.createButton("/icons/folder_go.png", e -> {
+        	System.out.println("Action: Move note");
+        });
+        add(moveNoteButton);
+        
+        JButton renameNoteButton = ButtonFactory.createButton("/icons/page_edit.png", e -> {
+        	System.out.println("Action: Rename note");
+        });
+        add(renameNoteButton);
+        
+        JButton searchInNoteButton = ButtonFactory.createButton("/icons/page_white_magnify.png", e -> {
+        	System.out.println("Action: Search in note");
+        });
+        add(searchInNoteButton);
+        
+        JButton exportToPDFButton = ButtonFactory.createButton("/icons/page_white_acrobat.png", e -> {
+        	System.out.println("Action: Export to PDF");
+        });
+        add(exportToPDFButton);
 
         addSeparator();
     }
@@ -69,9 +151,5 @@ public class ToolBar extends JToolBar {
         searchText.setMaximumSize(new Dimension(150, 22));
 
         add(searchText);
-    }
-
-    private JButton createButton(String path) {
-        return new JButton(new ImageIcon(getClass().getResource(path)));
     }
 }

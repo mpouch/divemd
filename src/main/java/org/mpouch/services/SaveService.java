@@ -9,5 +9,8 @@ public class SaveService {
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(content);
         }
+        
+        System.out.println("Saved: " + file);
+        
     }
 }
