@@ -9,8 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
+    private static final MainFrame instance = new MainFrame();
 
-    public MainFrame() {
+    private MainFrame() {
         // Config
         setTitle("divemd");
         setSize(800, 600);
@@ -37,5 +38,9 @@ public class MainFrame extends JFrame {
         // Bottom Panel
         BottomPanel bottomPanel = new BottomPanel();
         add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    public static MainFrame getInstance() {
+        return instance;
     }
 }

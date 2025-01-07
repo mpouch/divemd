@@ -7,19 +7,16 @@ import java.awt.*;
 import java.io.File;
 
 public class CenterPanel extends JPanel {
-    private static CenterPanel instance;
+    private static final CenterPanel instance = new CenterPanel();
     private final JTabbedPane tabbedPane;
 
-    public CenterPanel() {
+    private CenterPanel() {
         setLayout(new BorderLayout());
         tabbedPane = new JTabbedPane();
         add(tabbedPane, BorderLayout.CENTER);
     }
 
     public static CenterPanel getInstance() {
-        if (instance == null) {
-            instance = new CenterPanel();
-        }
         return instance;
     }
 

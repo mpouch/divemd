@@ -19,7 +19,7 @@ public class Main {
         }
 
         SwingUtilities.invokeLater(() -> {
-            MainFrame frame = new MainFrame();
+            MainFrame frame = MainFrame.getInstance();
             frame.setVisible(true);
         });
     }
