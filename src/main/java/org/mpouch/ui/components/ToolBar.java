@@ -47,7 +47,6 @@ public class ToolBar extends JToolBar {
 
         // Create file
         JButton createButton = ButtonFactory.createIconButton("/icons/add.png", e -> {
-        	System.out.println("Action: Create note");
             NoteController.promptFileCreation();
         });
         add(createButton);
@@ -55,7 +54,6 @@ public class ToolBar extends JToolBar {
         // Delete file
         // TODO: disable delete button if no node is selected in the file tree
         JButton deleteButton = ButtonFactory.createIconButton("/icons/delete.png", e -> {
-        	System.out.println("Action: Delete note");
             NoteController.deleteFile();
         });
         add(deleteButton);
@@ -63,7 +61,6 @@ public class ToolBar extends JToolBar {
         // Save file
         // TODO: disable save button if there is no changes
         JButton saveButton = ButtonFactory.createIconButton("/icons/disk.png", e-> {
-        	System.out.println("Action: Save note");
             SaveController saveController = new SaveController();
             saveController.saveNote();
         });

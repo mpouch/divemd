@@ -53,6 +53,8 @@ public class NoteController {
             if (file.delete()) {
                 fileTree.updateModel();
                 System.out.println("File deleted");
+            } else {
+            	System.out.println("This directory contains files");
             }
         }
     }
@@ -60,7 +62,7 @@ public class NoteController {
     // TODO: Handle unix permissions
     // TODO: remove redundant code
     // TODO: open new note in editor
-    public static void createFile(String fileName, String fileType) {
+    public static boolean createFile(String fileName, String fileType) {
         if (fileType.equals("Note")) {
 
             try {
@@ -69,11 +71,14 @@ public class NoteController {
                 if (newNote.createNewFile()) {
                     fileTree.updateModel();
                     System.out.println("Created: " + newNote);
+                    return true;
                 } else {
-                    System.out.println("Error. Note already exists or could not be created");
+                    System.out.println("Note already exists or could not be created");
+                    return false;
                 }
             } catch (IOException e) {
                 System.err.println("Error: " + e.getMessage());
+                return false;
             }
 
         } else if (fileType.equals("Directory")) {
@@ -84,13 +89,18 @@ public class NoteController {
                 if (newDirectory.mkdir()) {
                     fileTree.updateModel();
                     System.out.println("Created: " + newDirectory);
+                    return true;
                 } else {
-                    System.out.println("Error. Directory already exists or could not be created");
+                    System.out.println("Directory already exists or could not be created");
+                    return false;
                 }
             } catch (Exception e) {
                 System.err.println("Error: " + e.getMessage());
+                return false;
             }
 
         }
+        
+        return false;
     }
 }

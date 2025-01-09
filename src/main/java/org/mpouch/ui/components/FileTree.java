@@ -34,7 +34,7 @@ public class FileTree extends JTree {
 
         setRootVisible(false);
         setShowsRootHandles(true);
-        setEditable(true);
+        setEditable(false);
 
         addTreeSelectionListener(new FileTreeSelectionListener());
     }

@@ -5,6 +5,7 @@ import org.mpouch.ui.factories.ButtonFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.invoke.StringConcatFactory;
 
 public class NewFileDialog extends JDialog {
 
@@ -47,23 +48,37 @@ public class NewFileDialog extends JDialog {
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         JButton confirmButton = ButtonFactory.createButton("Confirm", e -> {
-            System.out.println("Action: Confirm");
-            NoteController.createFile(
-                    nameTextField.getText().trim(),
-                    (String) typeDropdown.getSelectedItem()
-            );
+        	String fileName = nameTextField.getText().trim();
+        	String fileType = (String) typeDropdown.getSelectedItem();
+        	
+        	
+        	/*
+        	 * In case the user leaves the file name field empty, the default
+        	 * given name will be "Untitled". If there already is a file named "Untitled",
+        	 * then it will be name "Untitled 1", "Untitled 2" and so on.
+        	 */
+        	if (fileName.length() != 0) {
+        		NoteController.createFile(fileName, fileType);
+        	} else {
+        		fileName = "Untitled";
+        		int fileCount = 1;
+        		
+        		while (!NoteController.createFile(fileName, fileType)) {
+        			fileName = "Untitled " + String.valueOf(fileCount);
+        			fileCount ++;
+        		}
+        	}
             dispose();
         });
 
         JButton cancelButton = ButtonFactory.createButton("Cancel", e -> {
-            System.out.println("Action: Cancel");
             dispose();
         });
 
         buttonPanel.add(confirmButton);
         buttonPanel.add(cancelButton);
 
-        // Structure
+        // Main structure
         mainPanel.add(namePanel);
         mainPanel.add(typePanel);
         mainPanel.add(buttonPanel);
