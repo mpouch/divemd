@@ -21,7 +21,6 @@ public class CenterPanel extends JPanel {
     }
 
     // Open note
-
     public void openNote(File file, String title, String content) {
         if (tabbedPane.getTabCount() == 0) {
             openNoteInNewTab(file, title, content);
@@ -45,6 +44,12 @@ public class CenterPanel extends JPanel {
 
             int selectedIndex = tabbedPane.getSelectedIndex();
             tabbedPane.setTitleAt(selectedIndex, title);
+        }
+    }
+
+    public void closeNoteTab(File file, String title) {
+        if (!file.isDirectory()) {
+            tabbedPane.removeTabAt(getTabIndex(title));
         }
     }
 

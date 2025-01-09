@@ -30,11 +30,7 @@ public class FileTree extends JTree {
         setCellRenderer(renderer);
         setCellEditor(editor);
 
-        FileTreeController fileTreeController = new FileTreeController();
-        String path = AppConfig.getWorkdir();
-
-        DefaultTreeModel model = fileTreeController.getTreeModel(path);
-        setModel(model);
+        updateModel();
 
         setRootVisible(false);
         setShowsRootHandles(true);
@@ -50,15 +46,30 @@ public class FileTree extends JTree {
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) path.getLastPathComponent();
             Object nodeUserObject = selectedNode.getUserObject();
 
-            if (nodeUserObject instanceof File file && file.getName().endsWith(".md")) {
+            if (
+                    nodeUserObject instanceof File file &&
+                    file.getName().endsWith(".md") &&
+                    file.exists()
+            ) {
                 try {
                     CenterPanel centerPanel = CenterPanel.getInstance();
                     String content = new String(Files.readAllBytes(file.toPath()));
                     centerPanel.openNote(file, FileUtils.getCleanFileName(file), content);
                 } catch (IOException ex) {
+                    System.err.println("FileTree Selection error: " + ex.getMessage());
                     throw new RuntimeException(ex);
                 }
             }
         }
+    }
+
+    public void updateModel() {
+        FileTreeController fileTreeController = new FileTreeController();
+        String path = AppConfig.getWorkdir();
+
+        DefaultTreeModel model = fileTreeController.getTreeModel(path);
+        setModel(model);
+
+        System.out.println("Model updated");
     }
 }

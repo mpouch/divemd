@@ -46,11 +46,6 @@ public class NewFileDialog extends JDialog {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        JButton cancelButton = ButtonFactory.createButton("Cancel", e -> {
-            System.out.println("Action: Cancel");
-            dispose();
-        });
-
         JButton confirmButton = ButtonFactory.createButton("Confirm", e -> {
             System.out.println("Action: Confirm");
             NoteController.createFile(
@@ -60,8 +55,13 @@ public class NewFileDialog extends JDialog {
             dispose();
         });
 
-        buttonPanel.add(cancelButton);
+        JButton cancelButton = ButtonFactory.createButton("Cancel", e -> {
+            System.out.println("Action: Cancel");
+            dispose();
+        });
+
         buttonPanel.add(confirmButton);
+        buttonPanel.add(cancelButton);
 
         // Structure
         mainPanel.add(namePanel);

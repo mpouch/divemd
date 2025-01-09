@@ -6,15 +6,24 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SidePanel extends JPanel {
+    private static final SidePanel instance = new SidePanel();
+    private final FileTree fileTree = new FileTree();
 
     public SidePanel() {
         createSidePanel();
     }
 
+    public static SidePanel getInstance() {
+        return instance;
+    }
+
+    public FileTree getFileTree() {
+        return this.fileTree;
+    }
+
     private void createSidePanel() {
         setLayout(new BorderLayout());
 
-        FileTree fileTree = new FileTree();
         JScrollPane jScrollPane = new JScrollPane(fileTree);
         add(jScrollPane, BorderLayout.CENTER);
 

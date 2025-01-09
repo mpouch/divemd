@@ -3,10 +3,12 @@ package org.mpouch.ui.components;
 import org.mpouch.controllers.NoteController;
 import org.mpouch.controllers.SaveController;
 import org.mpouch.ui.factories.ButtonFactory;
+import org.mpouch.ui.panels.SidePanel;
 
 import javax.swing.*;
 import java.awt.*;
 
+// TODO: remove redundant code
 public class ToolBar extends JToolBar {
 
     public ToolBar() {
@@ -51,12 +53,15 @@ public class ToolBar extends JToolBar {
         add(createButton);
 
         // Delete file
+        // TODO: disable delete button if no node is selected in the file tree
         JButton deleteButton = ButtonFactory.createIconButton("/icons/delete.png", e -> {
         	System.out.println("Action: Delete note");
-            NoteController.promptFileCreation();
+            NoteController.deleteFile();
         });
         add(deleteButton);
-        
+
+        // Save file
+        // TODO: disable save button if there is no changes
         JButton saveButton = ButtonFactory.createIconButton("/icons/disk.png", e-> {
         	System.out.println("Action: Save note");
             SaveController saveController = new SaveController();
@@ -142,6 +147,8 @@ public class ToolBar extends JToolBar {
         
         JButton exportToPDFButton = ButtonFactory.createIconButton("/icons/page_white_acrobat.png", e -> {
         	System.out.println("Action: Export to PDF");
+            // temporary dev tool: update tree
+            SidePanel.getInstance().getFileTree().updateModel();
         });
         add(exportToPDFButton);
 

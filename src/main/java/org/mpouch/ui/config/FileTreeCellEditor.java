@@ -23,7 +23,7 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
     // Custom config
 
     // Rename file
-    // TODO: Handle IO exceptions and permissions
+    // TODO: Handle IO exceptions and unix permissions
     @Override
     public Object getCellEditorValue() {
         TreePath editingPath = tree.getEditingPath();
@@ -47,6 +47,7 @@ public class FileTreeCellEditor extends DefaultTreeCellEditor {
                 // If the file is a markdown file, trigger an update in the NoteEditor
                 // to reflect the new note name in the tabbed pane
                 if (file.getName().endsWith(".md")) {
+                    System.out.println("File: " + file);
                     requestNoteEditorUpdate(file, renamedFile);
                 }
 

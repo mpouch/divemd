@@ -35,7 +35,7 @@ public class NoteEditor extends JPanel {
         textArea.setText(content);
 
         // Positions the viewport at the start of the markdown file
-        // Otherwise, it lands at the bottom of scrollPane
+        // (DEPRECATED) Otherwise, it lands at the bottom of scrollPane
         textArea.setCaretPosition(0);
     }
 
