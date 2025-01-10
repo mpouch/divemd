@@ -23,40 +23,83 @@ public class NoteController {
     }
 
     public static void deleteFile() {
-        // TODO: handle directories with content
+    	// TODO: remove redundant code
 
         DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) fileTree.getSelectionPath().getLastPathComponent();
         Object nodeUserObject = selectedNode.getUserObject();
         String fileName = FileUtils.getCleanFileName(((File) nodeUserObject));
+        File file = (File) nodeUserObject;
+        
+        // Delete note
+        if (!file.isDirectory()) {
+            Object[] options = {"Confirm", "Cancel"};
 
-        Object[] options = {"Confirm", "Cancel"};
+            int option = JOptionPane.showOptionDialog(
+                    MainFrame.getInstance(),
+                    "Are you sure you want to delete \"" + fileName + "\"?",
+                    "Delete file",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
 
-        int option = JOptionPane.showOptionDialog(
-                MainFrame.getInstance(),
-                "Are you sure you want to delete \"" + fileName + "\"?",
-                "Delete file",
-                JOptionPane.OK_CANCEL_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[0]
-        );
+            if (option == 0) {
 
-        if (option == 0) {
-            File file = (File) nodeUserObject;
+                // TODO: handle unopened notes
+                if (file.getName().endsWith(".md")) {
+                    CenterPanel.getInstance().closeNoteTab(file, fileName);
+                }
 
-            // TODO: handle unopened notes
-            if (file.getName().endsWith(".md")) {
-                CenterPanel.getInstance().closeNoteTab(file, fileName);
+                if (file.delete()) {
+                    fileTree.updateModel();
+                    System.out.println("File deleted");
+                } else {
+                	System.out.println("This directory contains files");
+                }
             }
+        } else { // Delete directory
+            Object[] options = {"Confirm", "Cancel"};
 
-            if (file.delete()) {
-                fileTree.updateModel();
-                System.out.println("File deleted");
-            } else {
-            	System.out.println("This directory contains files");
+            int option = JOptionPane.showOptionDialog(
+                    MainFrame.getInstance(),
+                    "Are you sure you want to delete \"" + fileName + "\"? All files inside will be deleted.",
+                    "Delete file",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+            
+            if (option == 0) {
+            	deleteDirectory(file);
             }
         }
+    }
+    
+    private static void deleteDirectory(File file) {
+    	File[] files = file.listFiles();
+    	System.out.println("Directory: " + file);
+    	
+    	if (files != null) {
+        	for (File f: files) {
+        		if (f.isDirectory()) {
+        			deleteDirectory(f);
+        		} else {
+        			if (f.delete()) {
+        				fileTree.updateModel();
+        				System.out.println("Deleted: " + f.getName());
+        			} else {
+        				System.out.println("Could not delete.");
+        			}
+        		}
+        	}
+    	}
+    	
+    	file.delete();
+    	fileTree.updateModel();
     }
 
     // TODO: Handle unix permissions
