@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Top Panel
-        TopPanel topPanel = new TopPanel();
+        TopPanel topPanel = TopPanel.getInstance();
         add(topPanel, BorderLayout.NORTH);
 
         // Center Panel
