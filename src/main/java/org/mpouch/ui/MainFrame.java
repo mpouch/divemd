@@ -36,7 +36,7 @@ public class MainFrame extends JFrame {
         add(splitPane, BorderLayout.CENTER);
 
         // Bottom Panel
-        BottomPanel bottomPanel = new BottomPanel();
+        BottomPanel bottomPanel = BottomPanel.getInstance();
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
