@@ -97,9 +97,10 @@ public class NoteController {
         		}
         	}
     	}
-    	
-    	file.delete();
-    	fileTree.updateModel();
+
+        if (file.delete()) {
+            fileTree.updateModel();
+        }
     }
 
     // TODO: Handle unix permissions

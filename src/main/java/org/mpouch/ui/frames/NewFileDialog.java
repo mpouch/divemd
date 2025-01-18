@@ -5,7 +5,6 @@ import org.mpouch.ui.factories.ButtonFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.invoke.StringConcatFactory;
 
 public class NewFileDialog extends JDialog {
 
@@ -64,7 +63,7 @@ public class NewFileDialog extends JDialog {
         		int fileCount = 1;
         		
         		while (!NoteController.createFile(fileName, fileType)) {
-        			fileName = "Untitled " + String.valueOf(fileCount);
+        			fileName = "Untitled " + fileCount;
         			fileCount ++;
         		}
         	}
@@ -75,6 +74,7 @@ public class NewFileDialog extends JDialog {
             dispose();
         });
 
+        getRootPane().setDefaultButton(confirmButton);
         buttonPanel.add(confirmButton);
         buttonPanel.add(cancelButton);
 
