@@ -13,6 +13,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,6 +38,8 @@ public class FileTree extends JTree {
         setEditable(false);
 
         addTreeSelectionListener(new FileTreeSelectionListener());
+
+        getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
     }
 
     private static class FileTreeSelectionListener implements TreeSelectionListener {
