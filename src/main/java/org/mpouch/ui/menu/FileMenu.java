@@ -1,8 +1,6 @@
 package org.mpouch.ui.menu;
 
 import org.mpouch.controllers.SaveController;
-import org.mpouch.ui.MainFrame;
-import org.mpouch.ui.panels.CenterPanel;
 
 import javax.swing.*;
 import java.awt.*;

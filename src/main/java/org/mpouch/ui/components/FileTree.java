@@ -5,6 +5,7 @@ import org.mpouch.services.utils.FileUtils;
 import org.mpouch.ui.config.AppConfig;
 import org.mpouch.ui.config.FileTreeCellEditor;
 import org.mpouch.ui.config.FileTreeCellRenderer;
+import org.mpouch.ui.panels.BottomPanel;
 import org.mpouch.ui.panels.CenterPanel;
 
 import javax.swing.*;
@@ -56,8 +57,11 @@ public class FileTree extends JTree {
             ) {
                 try {
                     CenterPanel centerPanel = CenterPanel.getInstance();
+                    BottomPanel bottomPanel = BottomPanel.getInstance();
+
                     String content = new String(Files.readAllBytes(file.toPath()));
                     centerPanel.openNote(file, FileUtils.getCleanFileName(file), content);
+                    bottomPanel.updateFileAttributesDisplay(file);
                 } catch (IOException ex) {
                     System.err.println("FileTree Selection error: " + ex.getMessage());
                     throw new RuntimeException(ex);
