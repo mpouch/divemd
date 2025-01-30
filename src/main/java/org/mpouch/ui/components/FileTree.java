@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+// TODO: FileTree - Remove redundant code
 public class FileTree extends JTree {
 
     public FileTree() {
@@ -31,7 +32,7 @@ public class FileTree extends JTree {
 
         setCellRenderer(renderer);
         setCellEditor(editor);
-
+        
         updateModel();
 
         setRootVisible(false);
@@ -70,6 +71,7 @@ public class FileTree extends JTree {
         }
     }
 
+    // TODO: update this method
     public void updateModel() {
         FileTreeController fileTreeController = new FileTreeController();
         String path = AppConfig.getWorkdir();
@@ -78,5 +80,27 @@ public class FileTree extends JTree {
         setModel(model);
 
         System.out.println("Model updated");
+    }
+
+    // TODO: Decide where this goes (FileTreeController/Service?)
+    public static void openNoteFromSelection(File file) {
+        if (
+                file != null &&
+                file.getName().endsWith(".md") &&
+                file.exists()
+        ) {
+            try {
+                CenterPanel centerPanel = CenterPanel.getInstance();
+                BottomPanel bottomPanel = BottomPanel.getInstance();
+
+                String content = new String(Files.readAllBytes(file.toPath()));
+
+                centerPanel.openNote(file, FileUtils.getCleanFileName(file), content);
+                bottomPanel.updateFileAttributesDisplay(file);
+            } catch (IOException ex) {
+                System.err.println("FileTree Selection error: " + ex.getMessage());
+                throw new RuntimeException(ex);
+            }
+        }
     }
 }

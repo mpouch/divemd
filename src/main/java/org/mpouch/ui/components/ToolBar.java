@@ -133,7 +133,7 @@ public class ToolBar extends JToolBar {
         add(moveNoteButton);
         
         JButton renameNoteButton = ButtonFactory.createIconButton("/icons/page_edit.png", e -> {
-        	System.out.println("Action: Rename note");
+        	NoteController.promptFileRename();
         });
         add(renameNoteButton);
         

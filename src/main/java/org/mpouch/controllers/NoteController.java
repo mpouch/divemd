@@ -5,6 +5,7 @@ import org.mpouch.ui.MainFrame;
 import org.mpouch.ui.components.FileTree;
 import org.mpouch.ui.config.AppConfig;
 import org.mpouch.ui.frames.NewFileDialog;
+import org.mpouch.ui.frames.RenameFileDialog;
 import org.mpouch.ui.panels.CenterPanel;
 import org.mpouch.ui.panels.SidePanel;
 
@@ -20,6 +21,12 @@ public class NoteController {
         MainFrame mainWindow = MainFrame.getInstance();
         NewFileDialog newFileDialog = new NewFileDialog(mainWindow);
         newFileDialog.setVisible(true);
+    }
+
+    public static void promptFileRename() {
+        MainFrame mainWindow = MainFrame.getInstance();
+        RenameFileDialog renameFileDialog = new RenameFileDialog(mainWindow);
+        renameFileDialog.setVisible(true);
     }
 
     public static void deleteFile() {
@@ -146,5 +153,20 @@ public class NoteController {
         }
         
         return false;
+    }
+
+    // TODO: Remove redundant code
+    // TODO: Test and handle NTFS filesystem
+    // TODO: Handle IOException
+    public static void renameFile(String newFileName) {
+        File fileToRename = CenterPanel.getInstance().getNoteEditor().getEditingFile();
+
+        File newFile = new File(AppConfig.getWorkdir() + "/" + newFileName);
+
+        if (fileToRename.renameTo(newFile)) {
+            fileTree.updateModel();
+            FileTree.openNoteFromSelection(newFile);
+        }
+
     }
 }
