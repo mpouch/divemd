@@ -121,6 +121,7 @@ public class NoteController {
 
                 if (newNote.createNewFile()) {
                     fileTree.updateModel();
+                    FileTree.openNoteFromSelection(newNote);
                     System.out.println("Created: " + newNote);
                     return true;
                 } else {
