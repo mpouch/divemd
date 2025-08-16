@@ -1,10 +1,21 @@
 package org.mpouch.ui.config;
 
-public class AppConfig {
+import java.util.Scanner;
 
-    // Set testing workdir here
+public class AppConfig {
+	static String workDirectory;
+	
     public static String getWorkdir() {
-        return "";
+        return workDirectory;
     }
+	
+	// Set testing working directory here
+	public static void setWorkdir() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter the work directory: ");
+		String input = scan.nextLine();
+		scan.close();
+		workDirectory = input;
+	}
 
 }
