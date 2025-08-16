@@ -38,6 +38,8 @@ public class FileTree extends JTree {
         setRootVisible(false);
         setShowsRootHandles(true);
         setEditable(false);
+        setDragEnabled(true);
+        setDropMode(DropMode.ON_OR_INSERT);
 
         addTreeSelectionListener(new FileTreeSelectionListener());
 
