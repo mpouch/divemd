@@ -10,8 +10,8 @@ public class RenameFileDialog extends JDialog {
 
     public RenameFileDialog(JFrame owner) {
         super(owner, "Rename file", true);
-        setSize(280, 110);
-        setMinimumSize(new Dimension(280, 110));
+        setSize(280, 135);
+        setMinimumSize(new Dimension(280, 135));
         setResizable(false);
         setLocationRelativeTo(owner);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
